@@ -1,0 +1,162 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    
+    background-color: #1a1d23;
+    color: #d1d5db;
+    line-height: 1.7;
+}
+
+
+header {
+    background: linear-gradient(to right, #2d3748, #1a202c);
+    padding: 3rem 1rem;
+    text-align: center;
+    border-bottom: 3px solid #4a5568;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    color: #edf2f7;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+
+nav {
+    background-color: #2d3748;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #a0aec0;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+nav ul li a:hover {
+    background-color: #4a5568;
+    color: #ffd700; /* Золотистий акцент */
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    gap: 2rem;
+}
+
+aside {
+    flex: 1;
+    min-width: 250px;
+    background: #2d3748;
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+article {
+    flex: 3;
+    min-width: 300px;
+}
+
+section {
+    background: #2d3748;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+/* Дочірній селектор  */
+section > h3 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+    border-left: 4px solid #ffd700;
+    padding-left: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #4a5568;
+    text-align: left;
+}
+
+th {
+    background-color: #1a202c;
+    color: #ffd700;
+}
+
+
+img, video, iframe {
+    border-radius: 6px;
+    opacity: 0.9;
+    transition: 0.4s;
+}
+
+video:hover {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Стилізація форми */
+fieldset {
+    border: 1px solid #4a5568;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+input {
+    background: #1a202c;
+    border: 1px solid #4a5568;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background: #ffd700;
+    color: #1a202c;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background: #f6e05e;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #718096;
+    font-size: 0.9rem;
+}
