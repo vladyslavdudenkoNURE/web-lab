@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Лабораторна робота №3</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+    h2 { margin-top: 30px; color: #1a1a2e; border-bottom: 2px solid #e94560; padding-bottom: 5px; }
+    .task-block { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 6px; }
+    button { padding: 8px 16px; margin: 5px; cursor: pointer; background: #1a1a2e; color: #fff; border: none; border-radius: 4px; }
+    button:hover { background: #e94560; }
+    input[type="text"], input[type="number"] { padding: 6px; margin: 4px; border: 1px solid #ccc; border-radius: 4px; }
+    #clock { font-size: 32px; font-weight: bold; color: #1a1a2e; margin: 10px 0; }
+    #fade-box { width: 300px; padding: 15px; background: #e94560; color: #fff; border-radius: 6px; margin-top: 10px; }
+    #moving-img { position: fixed; width: 50px; height: 50px; font-size: 40px; }
+    .demo-text { color: #333; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <h1>Лабораторна робота №3 — JavaScript</h1>
+
+  <h2>Завдання 1 — Функція зміни розміру тексту</h2>
+  <div class="task-block">
+    <input type="text" id="input-text" value="Привіт, FitZone!" placeholder="Введіть текст">
+    <input type="number" id="input-size" value="20" placeholder="Розмір шрифту" min="8" max="72">
+    <button onclick="showText()">Показати</button>
+    <div id="text-output"></div>
+  </div>
+
+  <h2>Завдання 2 — Зображення, що рухається</h2>
+  <div class="task-block">
+    <button onclick="startMoving()">Старт</button>
+    <button onclick="stopMoving()">Стоп</button>
+    <p>Дивіться на гантелю 🏋️ — вона з'являється в новому місці кожну секунду.</p>
+    <div id="moving-img">🏋️</div>
+  </div>
+
+  <h2>Завдання 3 — Зміна розміру всіх &lt;p&gt;</h2>
+  <div class="task-block">
+    <button onclick="changeParagraphs()">Змінити розмір всіх &lt;p&gt; на 15px</button>
+    <button onclick="resetParagraphs()">Скинути</button>
+    <p class="demo-text">Це перший абзац на сторінці.</p>
+    <p class="demo-text">Це другий абзац — тренування змінює все!</p>
+    <p class="demo-text">Це третій абзац — результат помітний одразу.</p>
+  </div>
+
+  <h2>Завдання 4 — Текстовий годинник</h2>
+  <div class="task-block">
+    <div id="clock">00:00:00</div>
+    <button onclick="startClock()">Запустити</button>
+    <button onclick="stopClock()">Зупинити</button>
+  </div>
+
+  <h2>Завдання 5 — Ефект поступового зникнення</h2>
+  <div class="task-block">
+    <button onclick="startFade()">Запустити ефект</button>
+    <button onclick="resetFade()">Скинути</button>
+    <div id="fade-box">Цей блок поступово зникне</div>
+  </div>
+
+  <script>
+    function showText() {
+      var text = document.getElementById('input-text').value;
+      var size = document.getElementById('input-size').value;
+      var output = document.getElementById('text-output');
+      output.innerHTML = text;
+      output.style.fontSize = size + 'px';
+    }
+
+    var moveInterval = null;
+    function startMoving() {
+      if (moveInterval) return;
+      moveInterval = setInterval(function() {
+        var img = document.getElementById('moving-img');
+        var x = Math.floor(Math.random() * (window.innerWidth - 60));
+        var y = Math.floor(Math.random() * (window.innerHeight - 60));
+        img.style.left = x + 'px';
+        img.style.top = y + 'px';
+      }, 1000);
+    }
+    function stopMoving() {
+      clearInterval(moveInterval);
+      moveInterval = null;
+    }
+
+    function changeParagraphs() {
+      var paragraphs = document.getElementsByTagName('p');
+      for (var i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].setAttribute('style', 'font-size: 15px;');
+      }
+    }
+    function resetParagraphs() {
+      var paragraphs = document.getElementsByTagName('p');
+      for (var i = 0; i < paragraphs.length; i++) {
+        paragraphs[i].removeAttribute('style');
+      }
+    }
+
+    var clockInterval = null;
+    function startClock() {
+      if (clockInterval) return;
+      clockInterval = setInterval(function() {
+        var now = new Date();
+        var h = String(now.getHours()).padStart(2, '0');
+        var m = String(now.getMinutes()).padStart(2, '0');
+        var s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
+      }, 1000);
+    }
+    function stopClock() {
+      clearInterval(clockInterval);
+      clockInterval = null;
+    }
+
+    var fadeInterval = null;
+    var opacity = 1;
+    function startFade() {
+      if (fadeInterval) return;
+      fadeInterval = setInterval(function() {
+        opacity -= 0.05;
+        if (opacity <= 0) {
+          opacity = 0;
+          clearInterval(fadeInterval);
+          fadeInterval = null;
+        }
+        document.getElementById('fade-box').style.opacity = opacity;
+      }, 100);
+    }
+    function resetFade() {
+      clearInterval(fadeInterval);
+      fadeInterval = null;
+      opacity = 1;
+      document.getElementById('fade-box').style.opacity = 1;
+    }
+  </script>
+
+</body>
+</html>
